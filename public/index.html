@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asisten HR Internal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 1. Tambahkan library Marked.js dari CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chat-scrollbar::-webkit-scrollbar { width: 6px; }
+        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .chat-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .chat-scrollbar::-webkit-scrollbar-thumb:hover { background: #a0aec0; }
+
+        /* Styling tambahan untuk daftar agar terlihat rapi di dalam chat bubble */
+        .chat-bubble ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        .chat-bubble ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+         .chat-bubble li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-2xl flex flex-col h-[95vh] my-4">
+        
+        <!-- Header -->
+        <div class="p-4 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-800">Asisten HR Internal</h1>
+                    <p class="text-sm text-slate-500 flex items-center">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                        Online
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chat-box" class="flex-grow overflow-y-auto p-6 space-y-6 chat-scrollbar">
+            <!-- Pesan Pembuka -->
+            <div id="initial-message" class="flex items-start gap-3 justify-start">
+                <img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full">
+                <div class="bg-slate-100 p-4 rounded-lg rounded-tl-none max-w-lg chat-bubble">
+                    <p class="text-slate-700">Halo! Saya adalah asisten virtual HR & IT. Apa yang ingin Anda ketahui tentang kebijakan perusahaan atau masalah teknis hari ini?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contoh Pertanyaan -->
+        <div id="suggestions-box" class="p-4 border-t border-slate-200 flex-shrink-0">
+            <p class="text-sm font-medium text-slate-500 mb-2">Atau coba tanyakan:</p>
+            <div class="flex flex-wrap gap-2">
+                <button class="suggestion-btn">Berapa biaya limit untuk kacamata medis?</button>
+                <button class="suggestion-btn">Apa saja aturan Remote Working?</button>
+                <button class="suggestion-btn">Prosedur onboarding karyawan baru</button>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <div class="p-4 bg-white border-t border-slate-200 flex-shrink-0">
+            <form id="chat-form" class="flex items-center gap-3">
+                <input type="text" id="user-input" class="flex-grow p-3 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150" placeholder="Ketik pertanyaan Anda...">
+                <button type="submit" id="submit-button" class="bg-indigo-500 text-white p-3 rounded-full hover:bg-indigo-600 active:bg-indigo-700 transition duration-150 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <svg id="send-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                    <svg id="loading-spinner" class="animate-spin h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- Inisialisasi tidak berubah ---
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        const submitButton = document.getElementById('submit-button');
+        const sendIcon = document.getElementById('send-icon');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const suggestionsBox = document.getElementById('suggestions-box');
+        const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+        const sendQuestion = async (question) => {
+            if (!question) return;
+            addMessage(question, 'user');
+            userInput.value = '';
+            showLoading(true);
+            suggestionsBox.style.display = 'none';
+
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: question, session_id: sessionId })
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                addMessage(data.answer, 'ai');
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Maaf, terjadi masalah koneksi. Silakan coba beberapa saat lagi.', 'ai');
+            } finally {
+                showLoading(false);
+            }
+        };
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendQuestion(userInput.value.trim());
+        });
+        
+        suggestionsBox.addEventListener('click', (e) => {
+            if (e.target.classList.contains('suggestion-btn')) {
+                sendQuestion(e.target.innerText);
+            }
+        });
+
+        function showLoading(isLoading) { /* ... (fungsi ini tidak berubah) ... */ }
+        function addTypingIndicator() { /* ... (fungsi ini tidak berubah) ... */ }
+        function removeTypingIndicator() { /* ... (fungsi ini tidak berubah) ... */ }
+
+        let typingIndicator;
+        // Salin fungsi showLoading, addTypingIndicator, dan removeTypingIndicator
+        // dari kode Anda sebelumnya ke sini, karena mereka tidak berubah.
+        // ...
+        
+        // --- 2. Perubahan pada fungsi addMessage ---
+        function addMessage(text, sender) {
+            removeTypingIndicator();
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('flex', 'items-start', 'gap-3');
+            
+            const content = text || "Maaf, saya tidak dapat memberikan jawaban saat ini.";
+            
+            let htmlContent;
+            if (sender === 'user') {
+                messageElement.classList.add('justify-end');
+                // Untuk user, kita tetap gunakan teks biasa untuk keamanan
+                htmlContent = `
+                    <div class="bg-indigo-500 text-white p-4 rounded-lg rounded-br-none max-w-lg">
+                        <p>${content}</p>
+                    </div>
+                    <img src="https://placehold.co/40x40/e0e7ff/4338ca?text=U" alt="User Avatar" class="w-10 h-10 rounded-full">
+                `;
+            } else {
+                messageElement.classList.add('justify-start');
+                // Untuk AI, kita ubah Markdown menjadi HTML sebelum ditampilkan
+                const renderedHtml = marked.parse(content);
+                htmlContent = `
+                    <img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full">
+                    <div class="bg-slate-100 text-slate-700 p-4 rounded-lg rounded-tl-none max-w-lg chat-bubble">
+                        ${renderedHtml}
+                    </div>
+                `;
+            }
+
+            // Gunakan innerHTML untuk merender HTML, bukan innerText
+            messageElement.innerHTML = htmlContent;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // --- Salin fungsi showLoading, addTypingIndicator, dan removeTypingIndicator dari kode sebelumnya ---
+        function showLoading(isLoading) {
+            submitButton.disabled = isLoading;
+            sendIcon.classList.toggle('hidden', isLoading);
+            loadingSpinner.classList.toggle('hidden', !isLoading);
+            if(isLoading) {
+                addTypingIndicator();
+            } else {
+                removeTypingIndicator();
+            }
+        }
+        function addTypingIndicator() {
+            if (typingIndicator) return;
+            typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('flex', 'items-start', 'gap-3', 'justify-start');
+            typingIndicator.innerHTML = `
+                <img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full">
+                <div class="bg-slate-100 p-4 rounded-lg rounded-tl-none">
+                    <div class="flex items-center justify-center space-x-1">
+                        <div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0s;"></div>
+                        <div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                        <div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                    </div>
+                </div>
+            `;
+            chatBox.appendChild(typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        function removeTypingIndicator() {
+            if (typingIndicator) {
+                typingIndicator.remove();
+                typingIndicator = null;
+            }
+        }
+
+        document.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.classList.add('px-3', 'py-1', 'bg-slate-100', 'text-slate-600', 'rounded-full', 'text-sm', 'hover:bg-indigo-100', 'hover:text-indigo-600', 'transition', 'duration-150');
+        });
+    </script>
+</body>
+</html>
+

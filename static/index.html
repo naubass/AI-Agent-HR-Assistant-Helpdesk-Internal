@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Asisten HR Internal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chat-scrollbar::-webkit-scrollbar { width: 6px; }
+        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .chat-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .chat-scrollbar::-webkit-scrollbar-thumb:hover { background: #a0aec0; }
+        .chat-bubble ul, .chat-bubble ol { list-style-position: inside; padding-left: 1rem; }
+        .chat-bubble ul { list-style-type: disc; } .chat-bubble ol { list-style-type: decimal; }
+        .chat-bubble li { margin-bottom: 0.25rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 border-b border-slate-200">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0112 16.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 003 12c0 .778.099 1.533.284 2.253m18.148-4.506A9 9 0 0012 15c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 18c2.485 0 4.5-4.03 4.5-9s-2.015-9-4.5-9M3.284 7.506A9 9 0 0112 9c2.485 0 4.5 4.03 4.5 9s-2.015 9-4.5 9m0-18c-2.485 0-4.5 4.03-4.5 9s2.015 9 4.5 9" />
+                    </svg>
+                    <span class="text-xl font-bold text-slate-700">PT Maju Bersama</span>
+                </div>
+                <button id="open-chat-btn-nav" class="bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-150">
+                    Tanya Asisten HR
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="text-center py-20 lg:py-32 px-4">
+            <div class="container mx-auto">
+                <h1 class="text-4xl lg:text-6xl font-bold text-slate-900 mb-4">Selamat Datang di Portal Asisten HR</h1>
+                <p class="text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+                    Dapatkan jawaban instan untuk semua pertanyaan Anda seputar kebijakan HR, prosedur perusahaan, dan bantuan teknis IT.
+                </p>
+                <button id="open-chat-btn-hero" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition duration-150 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Mulai Percakapan
+                </button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="bg-white py-20 lg:py-24 px-4">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Kemampuan Utama Kami</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto mb-12">Asisten virtual kami dilatih untuk membantu Anda dengan cepat dan akurat.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
+                        <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Kebijakan HR</h3>
+                        <p class="text-slate-500">Informasi lengkap tentang cuti, klaim medis, aturan kerja jarak jauh, dan lainnya.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
+                        <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Bantuan IT</h3>
+                        <p class="text-slate-500">Solusi cepat untuk masalah umum seperti lupa password, koneksi WiFi, dan instalasi printer.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-slate-50 p-8 rounded-xl border border-slate-200">
+                         <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Prosedur Perusahaan</h3>
+                        <p class="text-slate-500">Panduan jelas tentang proses onboarding, kode etik, dan alur kerja internal lainnya.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200">
+        <div class="container mx-auto px-4 py-6 text-center text-slate-500">
+            <p>&copy; 2024 PT Maju Bersama. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Modal (Hidden by default) -->
+    <div id="chat-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div id="chat-widget" class="w-full max-w-2xl bg-white rounded-xl shadow-2xl flex flex-col h-[90vh] transition-all duration-300 transform scale-95 opacity-0">
+            <!-- Header -->
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-800">Asisten HR Internal</h1>
+                        <p class="text-sm text-slate-500 flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Online</p>
+                    </div>
+                </div>
+                <button id="close-chat-btn" class="text-slate-400 hover:text-slate-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <!-- Chat Box -->
+            <div id="chat-box" class="flex-grow overflow-y-auto p-6 space-y-6 chat-scrollbar">
+                <div id="initial-message" class="flex items-start gap-3 justify-start">
+                    <img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full">
+                    <div class="bg-slate-100 p-4 rounded-lg rounded-tl-none max-w-lg chat-bubble">
+                        <p class="text-slate-700">Halo! Silakan ajukan pertanyaan Anda.</p>
+                    </div>
+                </div>
+            </div>
+             <!-- Suggestion Box -->
+            <div id="suggestions-box" class="p-4 border-t border-slate-200 flex-shrink-0">
+                <p class="text-sm font-medium text-slate-500 mb-2">Coba tanyakan:</p>
+                <div class="flex flex-wrap gap-2">
+                    <button class="suggestion-btn">Berapa biaya limit untuk kacamata medis?</button>
+                    <button class="suggestion-btn">Apa saja aturan Remote Working?</button>
+                    <button class="suggestion-btn">Prosedur onboarding karyawan baru</button>
+                </div>
+            </div>
+            <!-- Input Form -->
+            <div class="p-4 bg-white border-t border-slate-200 flex-shrink-0">
+                <form id="chat-form" class="flex items-center gap-3">
+                    <input type="text" id="user-input" class="flex-grow p-3 border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150" placeholder="Ketik pertanyaan Anda...">
+                    <button type="submit" id="submit-button" class="bg-indigo-500 text-white p-3 rounded-full hover:bg-indigo-600 active:bg-indigo-700 transition duration-150 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <svg id="send-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+                        <svg id="loading-spinner" class="animate-spin h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Elemen Chat ---
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        const submitButton = document.getElementById('submit-button');
+        const sendIcon = document.getElementById('send-icon');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const suggestionsBox = document.getElementById('suggestions-box');
+        
+        // --- Elemen Modal ---
+        const chatModal = document.getElementById('chat-modal');
+        const chatWidget = document.getElementById('chat-widget');
+        const openChatButtons = [document.getElementById('open-chat-btn-nav'), document.getElementById('open-chat-btn-hero')];
+        const closeChatButton = document.getElementById('close-chat-btn');
+
+        const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+        // --- Logika Kontrol Modal ---
+        const openModal = () => {
+            chatModal.classList.remove('hidden');
+            setTimeout(() => {
+                chatWidget.classList.remove('scale-95', 'opacity-0');
+            }, 50); // Small delay to allow transition
+        };
+
+        const closeModal = () => {
+            chatWidget.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                chatModal.classList.add('hidden');
+            }, 300); // Match transition duration
+        };
+
+        openChatButtons.forEach(btn => btn.addEventListener('click', openModal));
+        closeChatButton.addEventListener('click', closeModal);
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) { // Close only if backdrop is clicked
+                closeModal();
+            }
+        });
+
+        // --- Implementasi Fungsi Chat ---
+        const sendQuestion = async (question) => {
+            if (!question) return;
+            addMessage(question, 'user');
+            userInput.value = '';
+            showLoading(true);
+            suggestionsBox.style.display = 'none';
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: question, session_id: sessionId })
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                addMessage(data.answer, 'ai');
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Maaf, terjadi masalah koneksi. Silakan coba beberapa saat lagi.', 'ai');
+            } finally {
+                showLoading(false);
+            }
+        };
+
+        chatForm.addEventListener('submit', (e) => { e.preventDefault(); sendQuestion(userInput.value.trim()); });
+        
+        suggestionsBox.addEventListener('click', (e) => { if (e.target.classList.contains('suggestion-btn')) { sendQuestion(e.target.innerText); } });
+        
+        let typingIndicator;
+
+        function addMessage(text, sender) {
+            removeTypingIndicator();
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('flex', 'items-start', 'gap-3');
+            const content = text || "Maaf, tidak ada jawaban.";
+            let htmlContent;
+            if (sender === 'user') {
+                messageElement.classList.add('justify-end');
+                htmlContent = `<div class="bg-indigo-500 text-white p-4 rounded-lg rounded-br-none max-w-lg"><p>${content}</p></div><img src="https://placehold.co/40x40/e0e7ff/4338ca?text=U" alt="User Avatar" class="w-10 h-10 rounded-full">`;
+            } else {
+                messageElement.classList.add('justify-start');
+                const renderedHtml = marked.parse(content);
+                htmlContent = `<img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full"><div class="bg-slate-100 text-slate-700 p-4 rounded-lg rounded-tl-none max-w-lg chat-bubble">${renderedHtml}</div>`;
+            }
+            messageElement.innerHTML = htmlContent;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function showLoading(isLoading) {
+            submitButton.disabled = isLoading;
+            sendIcon.classList.toggle('hidden', isLoading);
+            loadingSpinner.classList.toggle('hidden', !isLoading);
+            if (isLoading) addTypingIndicator();
+            else removeTypingIndicator();
+        }
+
+        function addTypingIndicator() {
+            if (typingIndicator) return;
+            typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('flex', 'items-start', 'gap-3', 'justify-start');
+            typingIndicator.innerHTML = `<img src="https://placehold.co/40x40/6366f1/ffffff?text=AI" alt="AI Avatar" class="w-10 h-10 rounded-full"><div class="bg-slate-100 p-4 rounded-lg rounded-tl-none"><div class="flex items-center justify-center space-x-1"><div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0s;"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div></div></div>`;
+            chatBox.appendChild(typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        
+        function removeTypingIndicator() { if (typingIndicator) { typingIndicator.remove(); typingIndicator = null; } }
+        
+        document.querySelectorAll('.suggestion-btn').forEach(btn => { btn.classList.add('px-3', 'py-1', 'bg-slate-100', 'text-slate-600', 'rounded-full', 'text-sm', 'hover:bg-indigo-100', 'hover:text-indigo-600', 'transition', 'duration-150'); });
+    });
+    </script>
+</body>
+</html>
+
